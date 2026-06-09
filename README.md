@@ -1,10 +1,10 @@
-# 💊 Cancer Drug Response Prediction using Machine Learning
+# Cancer Drug Response Prediction using Machine Learning
 
 > Predicting cancer cell sensitivity to Erlotinib — an FDA-approved lung cancer drug — using Random Forest and XGBoost models trained on real GDSC pharmacogenomics data.
 
 ---
 
-## 📌 Overview
+## Overview
 
 Drug resistance is one of the biggest challenges in cancer treatment. This project uses **real pharmaceutical screening data** from the Genomics of Drug Sensitivity in Cancer (GDSC) database to build machine learning models that predict whether a cancer cell line will be **sensitive or resistant** to Erlotinib — a targeted therapy used in lung cancer treatment.
 
@@ -12,7 +12,7 @@ Both models achieved **AUC = 1.0**, demonstrating that pharmacological features 
 
 ---
 
-## 🎯 Research Questions
+## Research Questions
 
 1. What does the drug response landscape look like across 286 cancer drugs?
 2. Which drugs are most widely tested across cancer cell lines?
@@ -22,7 +22,7 @@ Both models achieved **AUC = 1.0**, demonstrating that pharmacological features 
 
 ---
 
-## 📊 Key Findings
+## Key Findings
 
 | Finding | Detail |
 |---------|--------|
@@ -36,7 +36,7 @@ Both models achieved **AUC = 1.0**, demonstrating that pharmacological features 
 
 ---
 
-## 🖼️ Results
+## Results
 
 ### 1. Drug Response Distribution (LN_IC50)
 Distribution of 242,036 drug response measurements. The dashed line shows the median used to classify cells as sensitive vs resistant.
@@ -90,7 +90,7 @@ Using two different algorithms and comparing their performance is standard pract
 
 ---
 
-## 🛠️ Tools and Packages
+## Tools and Packages
 
 | Package | Purpose |
 |---------|---------|
@@ -104,7 +104,7 @@ Using two different algorithms and comparing their performance is standard pract
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 Cancer-Drug-Response-ML/
@@ -120,7 +120,7 @@ Cancer-Drug-Response-ML/
 
 ---
 
-## ▶️ How to Run
+## How to Run
 
 **1. Install required packages:**
 ```r
@@ -145,7 +145,7 @@ download.file(
 
 ---
 
-## 🗄️ Data Source
+## Data Source
 
 - **Database:** Genomics of Drug Sensitivity in Cancer (GDSC)
 - **Release:** GDSC2 release 8.5
@@ -155,7 +155,7 @@ download.file(
 
 ---
 
-## 🧠 Biological Context
+## Biological Context
 
 ### What is Erlotinib?
 Erlotinib is an **EGFR inhibitor** — it blocks a protein called Epidermal Growth Factor Receptor that drives cancer cell growth. It is FDA-approved for **non-small cell lung cancer** and pancreatic cancer.
@@ -171,7 +171,7 @@ In precision oncology, doctors want to give each patient the drug most likely to
 
 ---
 
-## 🔮 Future Directions
+## Future Directions
 
 - Incorporate gene expression data to improve biological interpretability
 - Expand to predict response across all 286 drugs simultaneously
@@ -180,6 +180,6 @@ In precision oncology, doctors want to give each patient the drug most likely to
 
 ---
 
-## 👩‍💻 Author
+## Author
 
 **Janet James**
