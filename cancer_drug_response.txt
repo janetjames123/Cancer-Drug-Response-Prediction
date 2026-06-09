@@ -1,0 +1,485 @@
+
+R version 4.6.0 (2026-04-24) -- "Because it was There"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin23
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[R.app GUI 1.83 (8601) aarch64-apple-darwin23]
+
+[Workspace restored from /Users/jamesdevaraj/.RData]
+[History restored from /Users/jamesdevaraj/.Rapp.history]
+
+> # Core ML packages
+> install.packages("tidyverse")
+--- Please select a CRAN mirror for use in this session ---
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/tidyverse_2.0.0.tgz'
+Content type 'application/x-gzip' length 430537 bytes (420 KB)
+==================================================
+downloaded 420 KB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("caret")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/caret_7.0-1.tgz'
+Content type 'application/x-gzip' length 3598443 bytes (3.4 MB)
+==================================================
+downloaded 3.4 MB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("randomForest")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/randomForest_4.7-1.2.tgz'
+Content type 'application/x-gzip' length 268506 bytes (262 KB)
+==================================================
+downloaded 262 KB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("xgboost")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/xgboost_3.2.1.1.tgz'
+Content type 'application/x-gzip' length 25585571 bytes (24.4 MB)
+==================================================
+downloaded 24.4 MB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("ggplot2")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/ggplot2_4.0.3.tgz'
+Content type 'application/x-gzip' length 8468216 bytes (8.1 MB)
+==================================================
+downloaded 8.1 MB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("pheatmap")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/pheatmap_1.0.13.tgz'
+Content type 'application/x-gzip' length 78511 bytes (76 KB)
+==================================================
+downloaded 76 KB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("corrplot")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/corrplot_0.95.tgz'
+Content type 'application/x-gzip' length 3829068 bytes (3.7 MB)
+==================================================
+downloaded 3.7 MB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("pROC")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/pROC_1.19.0.1.tgz'
+Content type 'application/x-gzip' length 1120108 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("data.table")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/data.table_1.18.4.tgz'
+Content type 'application/x-gzip' length 3465165 bytes (3.3 MB)
+==================================================
+downloaded 3.3 MB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> install.packages("glmnet")
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/glmnet_5.0.tgz'
+Content type 'application/x-gzip' length 7262726 bytes (6.9 MB)
+==================================================
+downloaded 6.9 MB
+
+
+The downloaded binary packages are in
+	/var/folders/y1/7h4x_q8d2wgbx7qzn9czd5vh0000gn/T//RtmpUxAWxp/downloaded_packages
+> # Download GDSC drug response data
+> gdsc_url <- "https://cog.sanger.ac.uk/cancerrxgene/GDSC_release8.5/GDSC2_fitted_dose_response_27Oct23.csv"
+> 
+> download.file(gdsc_url, 
++               destfile = "/Users/jamesdevaraj/Downloads/gdsc_drug_response.csv",
++               mode = "wb")
+trying URL 'https://cog.sanger.ac.uk/cancerrxgene/GDSC_release8.5/GDSC2_fitted_dose_response_27Oct23.csv'
+Content type 'text/csv' length 39830840 bytes (38.0 MB)
+==================================================
+downloaded 38.0 MB
+
+> 
+> # Download gene expression data
+> expr_url <- "https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip"
+> 
+> download.file(expr_url,
++               destfile = "/Users/jamesdevaraj/Downloads/gdsc_expression.zip",
++               mode = "wb")
+trying URL 'https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip'
+Error in download.file(expr_url, destfile = "/Users/jamesdevaraj/Downloads/gdsc_expression.zip",  : 
+  cannot open URL 'https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip'
+In addition: Warning message:
+In download.file(expr_url, destfile = "/Users/jamesdevaraj/Downloads/gdsc_expression.zip",  :
+  cannot open URL 'https://www.cancerrxgene.org/gdsc1000/GDSC1000_WebResources/Data/preprocessed/Cell_line_RMA_proc_basalExp.txt.zip': HTTP status was '410 Gone'
+> 
+> 
+> library(tidyverse)
+── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.2     
+── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(caret)
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+> library(randomForest)
+randomForest 4.7-1.2
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ‘randomForest’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+The following object is masked from ‘package:ggplot2’:
+
+    margin
+
+> library(xgboost)
+> library(ggplot2)
+> library(pheatmap)
+> library(corrplot)
+corrplot 0.95 loaded
+> library(pROC)
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+> library(data.table)
+data.table 1.18.4 using 4 threads (see ?getDTthreads).  Latest news: r-datatable.com
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:lubridate’:
+
+    hour, isoweek, isoyear, mday, minute, month, quarter, second, wday, week, yday, year
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+The following object is masked from ‘package:base’:
+
+    %notin%
+
+> library(glmnet)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+Loaded glmnet 5.0
+> 
+> # Load drug response data
+> drug_data <- fread("/Users/jamesdevaraj/Downloads/gdsc_drug_response.csv")
+> 
+> # Check what we have
+> dim(drug_data)
+[1] 242036     19
+> head(drug_data)
+   DATASET NLME_RESULT_ID NLME_CURVE_ID COSMIC_ID CELL_LINE_NAME SANGER_MODEL_ID    TCGA_DESC DRUG_ID    DRUG_NAME PUTATIVE_TARGET    PATHWAY_NAME COMPANY_ID WEBRELEASE MIN_CONC MAX_CONC
+    <char>          <int>         <int>     <int>         <char>          <char>       <char>   <int>       <char>          <char>          <char>      <int>     <char>    <num>    <num>
+1:   GDSC2            343      15946310    683667         PFSK-1       SIDM01132           MB    1003 Camptothecin            TOP1 DNA replication       1046          Y    1e-04      0.1
+2:   GDSC2            343      15946548    684052           A673       SIDM00848 UNCLASSIFIED    1003 Camptothecin            TOP1 DNA replication       1046          Y    1e-04      0.1
+3:   GDSC2            343      15946830    684057            ES5       SIDM00263 UNCLASSIFIED    1003 Camptothecin            TOP1 DNA replication       1046          Y    1e-04      0.1
+4:   GDSC2            343      15947087    684059            ES7       SIDM00269 UNCLASSIFIED    1003 Camptothecin            TOP1 DNA replication       1046          Y    1e-04      0.1
+5:   GDSC2            343      15947369    684062          EW-11       SIDM00203 UNCLASSIFIED    1003 Camptothecin            TOP1 DNA replication       1046          Y    1e-04      0.1
+6:   GDSC2            343      15947651    684072        SK-ES-1       SIDM01111 UNCLASSIFIED    1003 Camptothecin            TOP1 DNA replication       1046          Y    1e-04      0.1
+     LN_IC50      AUC     RMSE   Z_SCORE
+       <num>    <num>    <num>     <num>
+1: -1.463887 0.930220 0.089052  0.433123
+2: -4.869455 0.614970 0.111351 -1.421100
+3: -3.360586 0.791072 0.142855 -0.599569
+4: -5.044940 0.592660 0.135539 -1.516647
+5: -3.741991 0.734047 0.128059 -0.807232
+6: -5.142961 0.582439 0.137581 -1.570016
+> colnames(drug_data)
+ [1] "DATASET"         "NLME_RESULT_ID"  "NLME_CURVE_ID"   "COSMIC_ID"       "CELL_LINE_NAME"  "SANGER_MODEL_ID" "TCGA_DESC"       "DRUG_ID"         "DRUG_NAME"       "PUTATIVE_TARGET"
+[11] "PATHWAY_NAME"    "COMPANY_ID"      "WEBRELEASE"      "MIN_CONC"        "MAX_CONC"        "LN_IC50"         "AUC"             "RMSE"            "Z_SCORE"        
+> # How many unique drugs?
+> length(unique(drug_data$DRUG_NAME))
+[1] 286
+> 
+> # How many unique cell lines?
+> length(unique(drug_data$CELL_LINE_NAME))
+[1] 969
+> 
+> # Check distribution of drug response (LN_IC50)
+> summary(drug_data$LN_IC50)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ -8.748   1.508   3.237   2.817   4.700  13.820 
+> # Plot LN_IC50 distribution
+> png("/Users/jamesdevaraj/Downloads/ic50_distribution.png",
++     width = 900, height = 600)
+> ggplot(drug_data, aes(x = LN_IC50)) +
++   geom_histogram(bins = 50, fill = "#E41A1C", color = "white", alpha = 0.8) +
++   geom_vline(xintercept = median(drug_data$LN_IC50), 
++              linetype = "dashed", color = "navy", size = 1) +
++   labs(title = "Distribution of Drug Response (LN_IC50)",
++        subtitle = "242,036 measurements across 286 drugs and 969 cancer cell lines",
++        x = "LN_IC50 (lower = more sensitive to drug)",
++        y = "Count") +
++   theme_minimal(base_size = 14)
+Warning message:
+Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+This warning is displayed once per session.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated. 
+> dev.off()
+null device 
+          1 
+> png("/Users/jamesdevaraj/Downloads/top_drugs.png",
++     width = 900, height = 700)
+> drug_data %>%
++   count(DRUG_NAME, sort = TRUE) %>%
++   head(20) %>%
++   ggplot(aes(x = reorder(DRUG_NAME, n), y = n, fill = n)) +
++   geom_col() +
++   scale_fill_gradient(low = "#377EB8", high = "#E41A1C") +
++   coord_flip() +
++   labs(title = "Top 20 Most Tested Drugs in GDSC",
++        x = "Drug", y = "Number of Cell Lines Tested") +
++   theme_minimal(base_size = 13) +
++   theme(legend.position = "none")
+> dev.off()
+null device 
+          1 
+> # Filter for Erlotinib - a real lung cancer targeted therapy
+> erlotinib <- drug_data %>%
++   filter(DRUG_NAME == "Erlotinib") %>%
++   mutate(sensitive = ifelse(LN_IC50 < median(LN_IC50), "Sensitive", "Resistant"))
+> 
+> png("/Users/jamesdevaraj/Downloads/erlotinib_response.png",
++     width = 900, height = 600)
+> ggplot(erlotinib, aes(x = LN_IC50, fill = sensitive)) +
++   geom_histogram(bins = 40, color = "white", alpha = 0.8) +
++   scale_fill_manual(values = c("Sensitive" = "#E41A1C", 
++                                 "Resistant" = "#377EB8")) +
++   labs(title = "Erlotinib Drug Response in Cancer Cell Lines",
++        subtitle = "Erlotinib is a real FDA-approved lung cancer drug",
++        x = "LN_IC50 (lower = more sensitive)",
++        y = "Count", fill = "Response") +
++   theme_minimal(base_size = 14)
+> dev.off()
+null device 
+          1 
+> # Prepare ML dataset using drug response features
+> ml_data <- drug_data %>%
++   dplyr::select(CELL_LINE_NAME, DRUG_NAME, 
++                 LN_IC50, AUC, RMSE, Z_SCORE) %>%
++   filter(DRUG_NAME == "Erlotinib") %>%
++   mutate(
++     sensitive = ifelse(LN_IC50 < median(LN_IC50), 1, 0),
++     sensitive = as.factor(sensitive)
++   ) %>%
++   dplyr::select(AUC, RMSE, Z_SCORE, sensitive) %>%
++   drop_na()
+> 
+> # Check class balance
+> table(ml_data$sensitive)
+
+  0   1 
+478 477 
+> dim(ml_data)
+[1] 955   4
+> set.seed(42)
+> trainIndex <- createDataPartition(ml_data$sensitive, 
++                                    p = 0.8, 
++                                    list = FALSE)
+> train_data <- ml_data[trainIndex, ]
+> test_data <- ml_data[-trainIndex, ]
+> 
+> cat("Training samples:", nrow(train_data), "\n")
+Training samples: 765 
+> cat("Testing samples:", nrow(test_data), "\n")
+Testing samples: 190 
+> set.seed(42)
+> rf_model <- randomForest(sensitive ~ ., 
++                           data = train_data,
++                           ntree = 500,
++                           importance = TRUE)
+> 
+> # Check model
+> print(rf_model)
+
+Call:
+ randomForest(formula = sensitive ~ ., data = train_data, ntree = 500,      importance = TRUE) 
+               Type of random forest: classification
+                     Number of trees: 500
+No. of variables tried at each split: 1
+
+        OOB estimate of  error rate: 0.13%
+Confusion matrix:
+    0   1 class.error
+0 383   0 0.000000000
+1   1 381 0.002617801
+> 
+> # Predict on test data
+> rf_pred <- predict(rf_model, test_data)
+> rf_prob <- predict(rf_model, test_data, type = "prob")[,2]
+> 
+> # Accuracy
+> rf_conf <- confusionMatrix(rf_pred, test_data$sensitive)
+> cat("Random Forest Accuracy:", round(rf_conf$overall["Accuracy"]*100, 2), "%\n")
+Random Forest Accuracy: 100 %
+> # Prepare XGBoost format
+> train_matrix <- xgb.DMatrix(
++   data = as.matrix(train_data[, c("AUC","RMSE","Z_SCORE")]),
++   label = as.numeric(as.character(train_data$sensitive)))
+> 
+> test_matrix <- xgb.DMatrix(
++   data = as.matrix(test_data[, c("AUC","RMSE","Z_SCORE")]),
++   label = as.numeric(as.character(test_data$sensitive)))
+> 
+> # Train XGBoost
+> set.seed(42)
+> xgb_model <- xgboost(data = train_matrix,
++                       nrounds = 100,
++                       objective = "binary:logistic",
++                       eval_metric = "auc",
++                       verbose = 0)
+Error in xgboost(data = train_matrix, nrounds = 100, objective = "binary:logistic",  : 
+  argument "y" is missing, with no default
+In addition: Warning messages:
+1: In throw_err_or_depr_msg("Passed unrecognized parameters: ", paste(head(names_unrecognized),  :
+  Passed unrecognized parameters: verbose. This warning will become an error in a future version.
+2: In throw_err_or_depr_msg("Parameter '", match_old, "' has been renamed to '",  :
+  Parameter 'data' has been renamed to 'x'. This warning will become an error in a future version.
+> 
+> # Predict
+> xgb_prob <- predict(xgb_model, test_matrix)
+Error: object 'xgb_model' not found
+> xgb_pred <- as.factor(ifelse(xgb_prob > 0.5, 1, 0))
+Error: object 'xgb_prob' not found
+> 
+> xgb_conf <- confusionMatrix(xgb_pred, test_data$sensitive)
+Error: object 'xgb_pred' not found
+> cat("XGBoost Accuracy:", round(xgb_conf$overall["Accuracy"]*100, 2), "%\n")
+Error: object 'xgb_conf' not found
+> # Fixed XGBoost
+> train_matrix <- xgb.DMatrix(
++   data = as.matrix(train_data[, c("AUC","RMSE","Z_SCORE")]),
++   label = as.numeric(as.character(train_data$sensitive)))
+> 
+> test_matrix <- xgb.DMatrix(
++   data = as.matrix(test_data[, c("AUC","RMSE","Z_SCORE")]),
++   label = as.numeric(as.character(test_data$sensitive)))
+> 
+> set.seed(42)
+> xgb_model <- xgb.train(
++   params = list(
++     objective = "binary:logistic",
++     eval_metric = "auc",
++     max_depth = 6,
++     eta = 0.3
++   ),
++   data = train_matrix,
++   nrounds = 100,
++   verbose = 0
++ )
+> 
+> # Predict
+> xgb_prob <- predict(xgb_model, test_matrix)
+> xgb_pred <- as.factor(ifelse(xgb_prob > 0.5, 1, 0))
+> 
+> xgb_conf <- confusionMatrix(xgb_pred, test_data$sensitive)
+> cat("XGBoost Accuracy:", round(xgb_conf$overall["Accuracy"]*100, 2), "%\n")
+XGBoost Accuracy: 100 %
+> # ROC Curves for both models
+> png("/Users/jamesdevaraj/Downloads/roc_curves.png",
++     width = 900, height = 700)
+> 
+> rf_roc <- roc(as.numeric(as.character(test_data$sensitive)), rf_prob)
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+> xgb_roc <- roc(as.numeric(as.character(test_data$sensitive)), xgb_prob)
+Setting levels: control = 0, case = 1
+Setting direction: controls < cases
+> 
+> plot(rf_roc, col = "#E41A1C", lwd = 2,
++      main = "ROC Curves — Random Forest vs XGBoost",
++      cex.main = 1.3)
+> plot(xgb_roc, col = "#377EB8", lwd = 2, add = TRUE)
+> legend("bottomright",
++        legend = c(
++          paste("Random Forest AUC =", round(auc(rf_roc), 3)),
++          paste("XGBoost AUC =", round(auc(xgb_roc), 3))),
++        col = c("#E41A1C","#377EB8"),
++        lwd = 2, cex = 1.2)
+> dev.off()
+null device 
+          1 
+> # Feature Importance Plot
+> png("/Users/jamesdevaraj/Downloads/feature_importance.png",
++     width = 900, height = 600)
+> 
+> importance_df <- as.data.frame(importance(rf_model)) %>%
++   rownames_to_column("Feature") %>%
++   arrange(desc(MeanDecreaseGini))
+> 
+> ggplot(importance_df, 
++        aes(x = reorder(Feature, MeanDecreaseGini),
++            y = MeanDecreaseGini,
++            fill = MeanDecreaseGini)) +
++   geom_col() +
++   scale_fill_gradient(low = "#377EB8", high = "#E41A1C") +
++   coord_flip() +
++   labs(title = "Feature Importance — Random Forest",
++        subtitle = "Which features best predict Erlotinib drug response?",
++        x = "Feature", y = "Mean Decrease Gini") +
++   theme_minimal(base_size = 14) +
++   theme(legend.position = "none")
+> dev.off()
+null device 
+          1 
+> 
